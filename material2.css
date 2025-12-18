@@ -1,0 +1,24 @@
+body {
+    font-family: 'Roboto';
+    background-color: #ffffff;
+}
+
+.appbar-top {
+    background-color: #6200ee;
+    display: flex;
+    color: #fff;
+    padding-block: 15px;
+    padding-left: 16px;
+    box-shadow: 0 0px 10px 0 rgba(0,0,0,0.6);
+    width: 100%;
+    position: fixed;
+    top: 0;
+
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
