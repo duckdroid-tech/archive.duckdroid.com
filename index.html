@@ -1,34 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Duckdroid's Nostalgic Archive Packages</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
-        <link rel="stylesheet" href="material2.css">
-        <meta name="description" content="Duckdroid's most Android archives and packages including Android phones or anything.">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <meta name="keywords" content="Duckdroid, Android, Droid, Bugdroid, Cute, Tech, Phones, Pack, Fan Site, Archives, Packages">
-        <meta property="og:title" content="Duckdroid's Nostalgic Archive Packages">
-        <meta property="og:type" content="website">
-        <meta property="og:locale" content="en_US">
-    </head>
-    <body>
-        <div class="appbar-top">
-            <ul>
-                <span class="material-symbols-outlined">menu</span>
-                <h3>Duckdroid's Nostalgic Archive Packages</h3>
-            </ul>
-        </div>
-        <br>
-        <div class="banner">
-            <p>Welcome to the Duckdroid's most Android archive packs! Click on the cards' button to navigate.</p>
-            <a href="#">ABOUT</a>
-        </div>
-    </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Duckdroid's Nostalgic Archive Packages</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+  <link rel="stylesheet" href="material2.css">
+  <meta name="description" content="Duckdroid's Android archives and nostalgic packages." />
+  <meta name="keywords" content="Duckdroid, Android, Archives, Packages, Phones" />
+</head>
+<body>
+  <header class="md-topappbar">
+    <button class="md-iconbutton md-menu" aria-label="Open navigation" id="menuButton">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="md-topappbar-title">Duckdroid's Nostalgic Archive Packages</div>
+  </header>
+
+  <nav class="md-drawer" id="drawer" aria-hidden="true">
+    <div class="md-drawer-header">
+      <strong>Duckdroid</strong>
+      <button class="md-iconbutton md-close" id="closeDrawer" aria-label="Close navigation">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <ul class="md-drawer-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#">Packages</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="md-drawer-scrim" id="scrim" tabindex="-1" hidden></div>
+
+  <main class="md-main" id="mainContent">
+    <section class="md-hero">
+      <div class="md-hero-content">
+        <h1>Welcome to Duckdroid Archives</h1>
+        <p>Discover curated archive packages that celebrate classic Android devices, themes, and community builds.</p>
+        <p><a class="md-button md-contained" href="#packages">Explore Packages</a></p>
+      </div>
+    </section>
+
+    <section id="packages" class="md-section">
+      <h2 class="md-section-title">Featured Packages</h2>
+
+      <div class="md-grid">
+        <article class="md-card">
+          <div class="md-card-media" aria-hidden="true">
+            <!-- Simple SVG placeholder -->
+            <svg width="100%" height="120" viewBox="0 0 400 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="120" fill="#EDE7F6"/>
+              <text x="200" y="65" font-size="18" fill="#5E35B1" font-family="Roboto" text-anchor="middle">Classic ROM Pack</text>
+            </svg>
+          </div>
+          <div class="md-card-content">
+            <h3 class="md-card-title">Classic ROM Pack</h3>
+            <p class="md-card-subtitle">A collection of nostalgic Android ROMs, themes and wallpapers.</p>
+          </div>
+          <div class="md-card-actions">
+            <button class="md-button md-text" aria-label="View details">VIEW</button>
+            <button class="md-button md-outlined" aria-label="Download pack">DOWNLOAD</button>
+          </div>
+        </article>
+
+        <article class="md-card">
+          <div class="md-card-media" aria-hidden="true">
+            <svg width="100%" height="120" viewBox="0 0 400 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="120" fill="#FFF3E0"/>
+              <text x="200" y="65" font-size="18" fill="#EF6C00" font-family="Roboto" text-anchor="middle">Icon & Theme Pack</text>
+            </svg>
+          </div>
+          <div class="md-card-content">
+            <h3 class="md-card-title">Icon & Theme Pack</h3>
+            <p class="md-card-subtitle">Pixel-inspired icon sets and wallpapers tuned for nostalgia.</p>
+          </div>
+          <div class="md-card-actions">
+            <button class="md-button md-text">VIEW</button>
+            <button class="md-button md-outlined">DOWNLOAD</button>
+          </div>
+        </article>
+
+        <article class="md-card">
+          <div class="md-card-media" aria-hidden="true">
+            <svg width="100%" height="120" viewBox="0 0 400 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="120" fill="#E8F5E9"/>
+              <text x="200" y="65" font-size="18" fill="#2E7D32" font-family="Roboto" text-anchor="middle">Phone Image Archive</text>
+            </svg>
+          </div>
+          <div class="md-card-content">
+            <h3 class="md-card-title">Phone Image Archive</h3>
+            <p class="md-card-subtitle">High-quality photos and scans of classic device hardware.</p>
+          </div>
+          <div class="md-card-actions">
+            <button class="md-button md-text">VIEW</button>
+            <button class="md-button md-outlined">DOWNLOAD</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
 </html>
-
-
-
-
-
-
