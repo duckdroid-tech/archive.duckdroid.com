@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>What's New? — Duckdroid Archives</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+  <link rel="stylesheet" href="material2.css">
+</head>
+<body>
+  <header class="md-topappbar">
+    <button class="md-iconbutton md-menu" aria-label="Open navigation" id="menuButtonAbout">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="md-topappbar-title">What's New?</div>
+  </header>
 
+  <nav class="md-drawer" id="drawerAbout" aria-hidden="true">
+    <div class="md-drawer-header">
+      <strong>Duckdroid</strong>
+      <button class="md-iconbutton md-close" id="closeDrawerAbout" aria-label="Close navigation">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <ul class="md-drawer-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="about.html" class="active">What's New?</a></li>
+      <li><a href="#">Packages</a></li>
+    </ul>
+  </nav>
+
+  <div class="md-drawer-scrim" id="scrimAbout" tabindex="-1" hidden></div>
+
+  <main class="md-main">
+    <section class="md-section">
+      <h1>Changelogs</h1>
+      <p>This is the changelogs will see and read features in the versions history lists.</p>
+      <h2>v1.0</h2>
+      <p>- Initial Release</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
