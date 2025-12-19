@@ -8,7 +8,7 @@ body {
     display: flex;
     color: #fff;
     padding-block: 15px;
-    padding-left: 16px;
+    padding-left: 0;
     box-shadow: 0 0px 15px 0 rgba(0,0,0,0.7);
     width: 100%;
     position: fixed;
@@ -27,5 +27,6 @@ body {
   'opsz' 24
 
 }
+
 
 
