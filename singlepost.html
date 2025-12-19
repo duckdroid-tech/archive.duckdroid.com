@@ -1,1 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Post Title — DuckDroid</title>
 
+  <!-- Google Fonts + Material Icons (MD2 style) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    /* Material Design 2 inspired variables */
+    :root{
+      --md-surface: #fff;
+      --md-background: #f5f5f5;
+      --md-primary: #6200ee; /* purple 500 */
+      --md-primary-variant: #3700b3;
+      --md-secondary: #03dac6;
+      --md-on-primary: #ffffff;
+      --md-text-primary: #202124;
+      --md-text-secondary: #5f6368;
+      --md-border: rgba(0,0,0,0.08);
+      --md-radius: 8px;
+      --max-width: 880px;
+      --container-padding: 24px;
+      --card-elevation-1: 0 1px 3px rgba(60,64,67,0.15), 0 1px 2px rgba(60,64,67,0.2);
+      --card-elevation-2: 0 3px 6px rgba(60,64,67,0.15), 0 2px 4px rgba(60,64,67,0.12);
+      --shadow-fab: 0 6px 18px rgba(32,33,36,0.24);
+    }
+
+    /* Reset & base */
+    * {box-sizing: border-box;}
+    html,body {height:100%;}
+    body{
+      margin:0;
+      font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--md-background);
+      color:var(--md-text-primary);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+    }
+
+    /* Top App Bar (MD2 style) */
+    .topbar {
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 20px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.6));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--md-border);
+    }
+    .topbar .nav {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .icon-btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      color:var(--md-primary);
+      background:transparent;
+      border:none;
+      cursor:pointer;
+      font-size:20px;
+    }
+    .brand {
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      margin-left:6px;
+    }
+    .brand .title {
+      font-weight:500;
+      font-size:18px;
+      color:var(--md-text-primary);
+    }
+    .brand .subtitle {
+      font-size:12px;
+      color:var(--md-text-secondary);
+      margin-top:2px;
+    }
+
+    /* Page container */
+    .page {
+      max-width:calc(var(--max-width) + 2*var(--container-padding));
+      margin:20px auto 80px;
+      padding:0 var(--container-padding);
+    }
+
+    .layout {
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:24px;
+      align-items:start;
+    }
+
+    /* Main article card */
+    .post-card {
+      background:var(--md-surface);
+      border-radius:var(--md-radius);
+      box-shadow:var(--card-elevation-1);
+      overflow:hidden;
+    }
+    .hero {
+      width:100%;
+      height:340px;
+      background-size:cover;
+      background-position:center;
+    }
+    .post-body {
+      padding:24px;
+    }
+    .post-meta {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .author {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .avatar {
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#c7b8ff,#e7f7f3);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      color:var(--md-primary-variant);
+      border:1px solid rgba(0,0,0,0.04);
+    }
+    .meta-text {
+      font-size:13px;
+      color:var(--md-text-secondary);
+    }
+    .post-title {
+      font-size:28px;
+      font-weight:500;
+      margin:8px 0 6px;
+      color:var(--md-text-primary);
+    }
+    .lead {
+      margin:0 0 18px;
+      color:var(--md-text-secondary);
+      font-size:15px;
+    }
+
+    /* Content typography */
+    .content {
+      color:var(--md-text-primary);
+      font-size:16px;
+      line-height:1.78;
+    }
+    .content h2 {
+      margin-top:28px;
+      font-size:22px;
+      color:var(--md-text-primary);
+    }
+    .content img {
+      max-width:100%;
+      border-radius:6px;
+      box-shadow:var(--card-elevation-1);
+      display:block;
+      margin:16px 0;
+    }
+    .content pre, .content code {
+      background:#f4f4f6;
+      padding:10px;
+      border-radius:6px;
+      overflow:auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:13px;
+    }
+
+    /* Tags & actions */
+    .tags {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:18px;
+      margin-bottom:6px;
+    }
+    .tag {
+      padding:6px 10px;
+      font-size:13px;
+      color:var(--md-primary);
+      border-radius:16px;
+      background:rgba(98,0,238,0.06);
+      border:1px solid rgba(98,0,238,0.06);
+    }
+    .post-actions {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top:12px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:20px;
+      border:none;
+      cursor:pointer;
+      background:var(--md-primary);
+      color:var(--md-on-primary);
+      font-weight:500;
+      box-shadow:0 1px 2px rgba(0,0,0,0.12);
+    }
+    .btn.outline {
+      background:transparent;
+      color:var(--md-primary);
+      border:1px solid rgba(98,0,238,0.12);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position:relative;
+    }
+    .card {
+      background:var(--md-surface);
+      border-radius:12px;
+      padding:16px;
+      box-shadow:var(--card-elevation-1);
+      border:1px solid var(--md-border);
+    }
+    .related-list {display:flex;flex-direction:column;gap:12px;margin-top:12px;}
+    .related-item {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .related-thumb {
+      width:72px;
+      height:52px;
+      border-radius:6px;
+      background:#eee;
+      flex-shrink:0;
+      background-size:cover;
+      background-position:center;
+    }
+    .related-title {font-size:14px;color:var(--md-text-primary);font-weight:500;}
+    .related-meta {font-size:12px;color:var(--md-text-secondary);}
+
+    /* Comments */
+    .comments {margin-top:18px;}
+    .comment {
+      display:flex;
+      gap:12px;
+      margin-bottom:14px;
+      align-items:flex-start;
+    }
+    .comment .avatar {width:36px;height:36px;font-size:14px;}
+    .comment .bubble {
+      background:#fafafa;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.04);
+      max-width:calc(100% - 48px);
+    }
+    .comment .meta {font-size:13px;color:var(--md-text-secondary); margin-bottom:6px;}
+
+    .comment-form textarea {
+      width:100%;
+      min-height:110px;
+      resize:vertical;
+      padding:12px;
+      border-radius:8px;
+      border:1px solid var(--md-border);
+      font-family:inherit;
+      font-size:14px;
+      margin-bottom:10px;
+    }
+
+    /* Floating Action Button */
+    .fab {
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      background:var(--md-secondary);
+      color:#000;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:var(--shadow-fab);
+      cursor:pointer;
+      z-index:30;
+      border:none;
+      font-size:24px;
+    }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .layout{grid-template-columns:1fr;}
+      .page{margin:12px auto;}
+      .hero{height:220px;}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar" role="banner">
+    <nav class="nav" aria-label="Main">
+      <button class="icon-btn" aria-label="Back" onclick="history.back()">
+        <span class="material-icons">arrow_back</span>
+      </button>
+      <div class="brand">
+        <div class="title">DuckDroid</div>
+        <div class="subtitle">Tech & Open Source</div>
+      </div>
+    </nav>
+    <div style="flex:1"></div>
+    <div style="display:flex;gap:8px">
+      <button class="icon-btn" title="Search"><span class="material-icons">search</span></button>
+      <button class="icon-btn" title="Menu"><span class="material-icons">more_vert</span></button>
+    </div>
+  </header>
+
+  <main class="page" role="main">
+    <div class="layout">
+      <!-- Main content -->
+      <article class="post-card" itemscope itemtype="http://schema.org/Article">
+        <div class="hero" style="background-image: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop');" itemprop="image" aria-hidden="true"></div>
+
+        <div class="post-body">
+          <div class="post-meta">
+            <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <div class="avatar" aria-hidden="true">DD</div>
+              <div>
+                <div style="font-weight:600">DuckDroid</div>
+                <div class="meta-text">Published <time datetime="2025-12-19" itemprop="datePublished">Dec 19, 2025</time> · 6 min read</div>
+              </div>
+            </div>
+            <div style="margin-left:auto;" class="meta-text">Category: <strong style="color:var(--md-primary); margin-left:6px">Android</strong></div>
+          </div>
+
+          <h1 class="post-title" itemprop="headline">Material Design 2 — Building a Clean Single Post Layout</h1>
+          <p class="lead">A concise lead paragraph to introduce the post. It should be descriptive and invite reading the full article.</p>
+
+          <div class="tags" aria-hidden="true">
+            <span class="tag">Material Design</span>
+            <span class="tag">Design</span>
+            <span class="tag">Frontend</span>
+          </div>
+
+          <div class="post-actions" role="toolbar" aria-label="Post actions">
+            <button class="btn" onclick="window.print()"><span class="material-icons">print</span> Print</button>
+            <button class="btn outline" onclick="navigator.share?.({title: document.title, text: 'Check out this post', url: location.href}) || alert('Share API not available')"><span class="material-icons">share</span> Share</button>
+          </div>
+
+          <section class="content" itemprop="articleBody">
+            <p>This is a sample article content. Use semantic HTML and microdata for better SEO and structured data results.</p>
+
+            <h2>Principles</h2>
+            <p>The layout here follows Material Design 2 principles: bold brand color, clear elevation, comfortable spacing, rounded surfaces, and strong typographic scale.</p>
+
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Sample image" />
+
+            <pre><code>// Sample code block
+function helloWorld() {
+  console.log('Hello, DuckDroid!');
+}
+</code></pre>
+
+            <h2>Conclusion</h2>
+            <p>Adapt this template to your site generator (Jekyll, Hugo, Eleventy) by replacing static placeholders with template variables, and wire up comments/sharing as needed.</p>
+
+            <div style="margin-top:18px">
+              <strong>Tags:</strong>
+              <div class="tags" style="margin-top:8px">
+                <span class="tag">design</span>
+                <span class="tag">web</span>
+                <span class="tag">material</span>
+              </div>
+            </div>
+
+            <section class="comments" aria-label="Comments" id="comments">
+              <h3 style="margin-top:26px">Comments</h3>
+
+              <div class="comment">
+                <div class="avatar">AK</div>
+                <div>
+                  <div class="meta">Alex · <span style="color:var(--md-text-secondary)">Dec 18, 2025</span></div>
+                  <div class="bubble">Nice breakdown — especially like the elevation examples.</div>
+                </div>
+              </div>
+
+              <form class="comment-form" onsubmit="submitComment(event)">
+                <label for="comment" style="display:block;font-weight:500;margin-bottom:6px">Leave a comment</label>
+                <textarea id="comment" placeholder="Write your thoughts..." required></textarea>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <button class="btn" type="submit">Post comment</button>
+                  <button type="button" class="btn outline" onclick="document.getElementById('comment').value=''">Clear</button>
+                </div>
+              </form>
+            </section>
+          </section>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:600">About the author</div>
+              <div class="meta-text" style="margin-top:6px">DuckDroid publishes guides on Android development, open-source tooling, and design.</div>
+            </div>
+            <div class="avatar" style="width:56px;height:56px;font-size:18px">DD</div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div style="display:flex;gap:8px">
+              <button class="btn outline" style="padding:8px 10px"><span class="material-icons">favorite_border</span> Follow</button>
+              <button class="btn" style="background:var(--md-primary-variant)"><span class="material-icons">email</span> Subscribe</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div style="font-weight:600">Related posts</div>
+          <div class="related-list" aria-hidden="true">
+            <a href="#" class="related-item" style="text-decoration:none;color:inherit">
+              <div class="related-thumb" style="background-image:url('https://images.unsplash.com/photo-1506765515384-028b60a970df?q=80&w=800&auto=format&fit=crop')"></div>
+              <div>
+                <div class="related-title">Design tokens — how to scale</div>
+                <div class="related-meta">Dec 10, 2025 · 5 min</div>
+              </div>
+            </a>
+
+            <a href="#" class="related-item" style="text-decoration:none;color:inherit">
+              <div class="related-thumb" style="background-image:url('https://images.unsplash.com/photo-1515876302346-9971d2f7f8e1?q=80&w=800&auto=format&fit=crop')"></div>
+              <div>
+                <div class="related-title">MD2 vs MD3 — migration tips</div>
+                <div class="related-meta">Nov 1, 2025 · 8 min</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div style="font-weight:600">Newsletter</div>
+          <p class="meta-text" style="margin-top:8px">Get monthly updates on tutorials and design patterns.</p>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <input type="email" placeholder="you@domain.com" style="flex:1;padding:10px;border-radius:6px;border:1px solid var(--md-border)"/>
+            <button class="btn">Subscribe</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <button class="fab" title="Quick share" aria-label="Quick share" onclick="navigator.share?.({title: document.title, url: location.href}) || alert('Share not available')">
+    <span class="material-icons">share</span>
+  </button>
+
+  <script>
+    // Lightweight interactivity demos
+    function submitComment(e){
+      e.preventDefault();
+      const textarea = document.getElementById('comment');
+      const text = textarea.value.trim();
+      if(!text) return;
+      // For static demo, just append the comment locally
+      const container = document.querySelector('.comments');
+      const node = document.createElement('div');
+      node.className = 'comment';
+      node.innerHTML = '<div class="avatar">YY</div><div><div class="meta">You · <span style="color:var(--md-text-secondary)">just now</span></div><div class="bubble"></div></div>';
+      node.querySelector('.bubble').textContent = text;
+      container.insertBefore(node, container.querySelector('.comment-form'));
+      textarea.value='';
+      textarea.blur();
+      window.scrollTo({top: node.offsetTop - 120, behavior:'smooth'});
+    }
+
+    // Small accessibility: allow share fallback for older browsers
+    if(!navigator.share){
+      // Optionally you could provide fallback UI
+      console.log('Web Share API not available.');
+    }
+  </script>
+</body>
+</html>
