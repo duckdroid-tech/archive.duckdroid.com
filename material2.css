@@ -9,7 +9,7 @@ body {
     color: #fff;
     padding-block: 15px;
     padding-left: 16px;
-    box-shadow: 0 0px 10px 0 rgba(0,0,0,0.6);
+    box-shadow: 0 15px 0px 0 rgba(0,0,0,0.6);
     width: 100%;
     position: fixed;
     top: 0;
@@ -27,3 +27,4 @@ body {
   'opsz' 24
 
 }
+
