@@ -8,6 +8,28 @@
       <link rel="stylesheet" src="material2.css>
   </head>
   <body>
+    <header class="md-topappbar">
+    <button class="md-iconbutton md-menu" aria-label="Open navigation" id="menuButton">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="md-topappbar-title">Androidify</div>
+  </header>
+
+  <nav class="md-drawer" id="drawer" aria-hidden="true">
+    <div class="md-drawer-header">
+      <strong>Duckdroid</strong>
+      <button class="md-iconbutton md-close" id="closeDrawer" aria-label="Close navigation">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <ul class="md-drawer-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="whats-new.html">What's New?</a></li>
+      <li><a href="#">Packages</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
     <script src="app.js">
   </body>
 </html>
