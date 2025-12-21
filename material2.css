@@ -190,7 +190,7 @@ body {
 .md-button:focus{ outline:2px solid rgba(98,0,238,0.18); outline-offset:2px; }
 .md-button.md-contained{
   background:var(--md-primary);
-  color:var(--md-on-primary);
+  color:#6002ee;
   box-shadow: var(--md-elevation-1);
 }
 .md-button.md-outlined{
