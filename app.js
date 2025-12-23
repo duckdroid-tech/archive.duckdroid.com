@@ -9,12 +9,30 @@
 
     if(!menu || !drawer) return;
 
+    function isDesktop(){
+      return window.matchMedia && window.matchMedia('(min-width:900px)').matches;
+    }
+
     function open(){
+      // On desktop the drawer is persistent; don't change overlay/overflow
       drawer.setAttribute('aria-hidden','false');
-      if(scrim){ scrim.hidden = false; }
-      document.body.style.overflow = 'hidden';
+      if(!isDesktop()){
+        if(scrim){ scrim.hidden = false; }
+        document.body.style.overflow = 'hidden';
+      } else {
+        // ensure scrim hidden on desktop
+        if(scrim){ scrim.hidden = true; }
+        document.body.style.overflow = '';
+      }
     }
     function close(){
+      // If desktop, keep it visible (persistent) — set aria-hidden to false to keep semantics consistent
+      if(isDesktop()){
+        drawer.setAttribute('aria-hidden','false');
+        if(scrim){ scrim.hidden = true; }
+        document.body.style.overflow = '';
+        return;
+      }
       drawer.setAttribute('aria-hidden','true');
       if(scrim){ scrim.hidden = true; }
       document.body.style.overflow = '';
@@ -23,6 +41,20 @@
     menu.addEventListener('click', open);
     if(closeBtn) closeBtn.addEventListener('click', close);
     if(scrim) scrim.addEventListener('click', close);
+
+    // keep drawer accessible to screen readers: if viewport changes, update scrim/overflow
+    window.addEventListener('resize', function(){
+      if(isDesktop()){
+        drawer.setAttribute('aria-hidden','false');
+        if(scrim) scrim.hidden = true;
+        document.body.style.overflow = '';
+      } else {
+        // on small screens, ensure drawer starts closed (if DOM says so)
+        if(drawer.getAttribute('aria-hidden') !== 'false'){
+          if(scrim) scrim.hidden = true;
+        }
+      }
+    });
   }
 
   // Setup for files that use id names exactly as in HTML above
@@ -33,7 +65,7 @@
   document.addEventListener('pointerdown', function(e){
     var el = e.target;
     while(el && el !== document.body){
-      if(el.classList && el.classList.contains('md-button') || (el.classList && el.classList.contains('md-iconbutton'))){
+      if(el.classList && (el.classList.contains('md-button') || el.classList.contains('md-iconbutton'))){
         var rect = el.getBoundingClientRect();
         var ripple = document.createElement('span');
         ripple.className = 'ripple';
