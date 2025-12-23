@@ -254,3 +254,377 @@ body {
     max-width: calc(var(--md-max-width));
   }
 }
+:root{
+  --md-surface: #ffffff;
+  --md-primary: #6200ee;
+  --md-primary-variant: #3700b3;
+  --md-on-primary: #ffffff;
+  --md-on-surface: #1f1f1f;
+  --md-surface-variant: #f5f5f5;
+  --md-shadow-color: rgba(0,0,0,0.18);
+  --md-radius: 8px;
+  --md-elevation-1: 0 1px 3px var(--md-shadow-color), 0 1px 1px rgba(0,0,0,0.06);
+  --md-elevation-2: 0 2px 6px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.08);
+  --md-gap: 16px;
+  --md-max-width: 1100px;
+  --md-drawer-width: 240px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body {
+  margin: 0;
+  font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--md-on-surface);
+  background: var(--md-surface);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* Top App Bar */
+.md-topappbar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 16px;
+  background: linear-gradient(0deg, var(--md-primary), var(--md-primary));
+  color:var(--md-on-primary);
+  box-shadow: var(--md-elevation-2);
+  z-index:50;
+}
+.md-topappbar .md-menu{ margin-right:8px; }
+.md-topappbar-title {
+  font-weight:500;
+  font-size:1.125rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Icon buttons */
+.md-iconbutton{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  border:0;
+  color:inherit;
+  padding:8px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.md-iconbutton:focus{ outline:2px solid rgba(255,255,255,0.14); outline-offset:2px }
+
+/* Drawer */
+.md-drawer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:280px;
+  height:100%;
+  background:var(--md-surface);
+  box-shadow: 2px 0 12px rgba(0,0,0,0.12);
+  transform:translateX(-110%);
+  transition:transform .28s cubic-bezier(.2,.8,.2,1);
+  z-index:60;
+  display:flex;
+  flex-direction:column;
+}
+.md-drawer[aria-hidden="false"]{
+  transform:translateX(0);
+}
+.md-drawer-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px;
+  border-bottom:1px solid #eee;
+  font-weight:600;
+}
+.md-drawer-list{
+  list-style:none;
+  margin:0;
+  padding:8px 0;
+}
+.md-drawer-list li a{
+  display:block;
+  padding:12px 16px;
+  color:var(--md-on-surface);
+  text-decoration:none;
+  border-radius:6px;
+}
+.md-drawer-list li a:hover,
+.md-drawer-list li a.active{
+  background:var(--md-surface-variant);
+}
+
+/* Drawer scrim */
+.md-drawer-scrim{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:55;
+}
+
+/* Main content and layout */
+.md-main{
+  padding:88px 16px 40px; /* account for fixed top appbar */
+  max-width: var(--md-max-width);
+  margin:0 auto;
+}
+
+/* Hero */
+.md-hero{
+  background: linear-gradient(90deg, rgba(98,0,238,0.06), rgba(98,0,238,0.02));
+  border-radius:12px;
+  padding:28px;
+  margin-bottom:24px;
+  box-shadow: var(--md-elevation-1);
+}
+.md-hero-content h1{
+  margin:0 0 8px 0;
+  font-size:1.6rem;
+}
+.md-hero-content p{
+  margin:0 0 12px 0;
+  color: #444;
+}
+
+/* Grid and cards */
+.md-section-title{
+  margin:0 0 12px 0;
+  font-size:1.125rem;
+  font-weight:500;
+}
+.md-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+}
+
+/* Card */
+.md-card{
+  background:var(--md-surface);
+  border-radius:var(--md-radius);
+  overflow:hidden;
+  box-shadow: var(--md-elevation-1);
+  display:flex;
+  flex-direction:column;
+  min-height:200px;
+}
+.md-card-media{ width:100%; height:120px; display:block; overflow:hidden; background:#f0f0f0 }
+.md-card-content{ padding:16px 16px 8px 16px; flex:1 }
+.md-card-title{ margin:0 0 6px 0; font-size:1rem; font-weight:500 }
+.md-card-subtitle{ margin:0; color:#616161; font-size:0.9rem }
+
+/* Card actions */
+.md-card-actions{
+  display:flex;
+  gap:8px;
+  padding:12px 16px;
+  justify-content:flex-end;
+  border-top:1px solid #eee;
+}
+
+/* Buttons - MD2 style */
+.md-button{
+  position:relative;
+  border:0;
+  cursor:pointer;
+  padding:8px 12px;
+  font-weight:500;
+  border-radius:6px;
+  background:transparent;
+  color:var(--md-primary);
+  overflow:hidden;
+}
+.md-button:focus{ outline:2px solid rgba(98,0,238,0.18); outline-offset:2px; }
+.md-button.md-contained{
+  background:var(--md-primary);
+  color:var(--md-on-primary);
+  box-shadow: var(--md-elevation-1);
+}
+.md-button.md-outlined{
+  border:1px solid rgba(0,0,0,0.12);
+  color:var(--md-on-surface);
+  background:transparent;
+}
+.md-button.md-text{
+  background:transparent;
+  color:var(--md-primary);
+}
+
+/* Ripple helper (JS creates span.ripple) */
+.ripple{
+  position:absolute;
+  border-radius:50%;
+  transform:scale(0);
+  background:rgba(255,255,255,0.3);
+  animation: ripple 600ms linear;
+  pointer-events:none;
+}
+@keyframes ripple{
+  to{ transform:scale(4); opacity:0 }
+}
+
+/* Responsive adjustments */
+@media (min-width:900px){
+  .md-topappbar{ height:72px }
+  .md-main{ padding-top:96px }
+
+  /* Make the drawer persistent on desktop:
+     - use the defined drawer width (--md-drawer-width)
+     - keep it visible even if aria-hidden="true" in DOM (for progressive enhancement)
+  */
+  .md-drawer{
+    transform:translateX(0);
+    position:fixed;
+    height:100vh;
+    width:var(--md-drawer-width);
+    box-shadow:none;
+    z-index:40;
+  }
+  /* Ensure any aria-hidden translation is ignored on desktop */
+  .md-drawer[aria-hidden="true"]{
+    transform:translateX(0);
+  }
+
+  .md-drawer-scrim{ display:none !important; }
+
+  /* Place top app bar to the right of the drawer so it doesn't overlap */
+  .md-topappbar{
+    left: var(--md-drawer-width);
+    right: 0;
+    width: calc(100% - var(--md-drawer-width));
+  }
+
+  /* Shift the main content to the right of the drawer */
+  .md-main{
+    margin-left: var(--md-drawer-width);
+    max-width: calc(var(--md-max-width));
+  }
+}
+
+/* ----------------------------
+   Horizontal (MD2) cards
+   - Media (left) + content (right)
+   - Stacks vertically on smaller screens
+   ---------------------------- */
+.md-card.horizontal{
+  flex-direction:row;
+  align-items:stretch;
+  min-height:120px;
+  gap:0;
+  overflow:visible;
+  border-radius: calc(var(--md-radius) + 2px);
+}
+
+/* Media column */
+.md-card.horizontal .md-card-media{
+  width:200px;
+  height:auto;
+  min-height:120px;
+  flex: 0 0 200px;
+  display:block;
+  background:#f0f0f0;
+  overflow:hidden;
+  border-top-left-radius: calc(var(--md-radius) + 2px);
+  border-bottom-left-radius: calc(var(--md-radius) + 2px);
+}
+
+/* Ensure img covers the media area */
+.md-card.horizontal .md-card-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Content column */
+.md-card.horizontal .md-card-content{
+  padding:16px;
+  flex:1 1 auto;
+  min-width:0; /* allow text truncation */
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* Position actions vertically centered and right aligned */
+.md-card.horizontal .md-card-actions{
+  align-self:center;
+  padding:12px 16px;
+  border-top:0;
+  border-left:1px solid rgba(0,0,0,0.04);
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  justify-content:center;
+}
+
+/* Make actions appear inline on very wide screens */
+@media (min-width:1200px){
+  .md-card.horizontal .md-card-actions{
+    flex-direction:row;
+    align-items:center;
+    border-left:1px solid rgba(0,0,0,0.04);
+  }
+}
+
+/* Variant: outlined horizontal card */
+.md-card.horizontal.md-outlined{
+  border:1px solid rgba(0,0,0,0.08);
+  box-shadow:none;
+}
+
+/* Variant: contained / elevated (accent background) */
+.md-card.horizontal.md-contained{
+  background: linear-gradient(90deg, rgba(98,0,238,0.04), rgba(98,0,238,0.01));
+  color:var(--md-on-surface);
+  box-shadow: var(--md-elevation-2);
+}
+
+/* Make horizontal cards stack on small screens */
+@media (max-width:699px){
+  .md-card.horizontal{
+    flex-direction:column;
+    border-radius:var(--md-radius);
+    min-height: auto;
+  }
+  .md-card.horizontal .md-card-media{
+    width:100%;
+    min-height:140px;
+    height:160px;
+    flex:0 0 auto;
+    border-top-left-radius:var(--md-radius);
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+  }
+  .md-card.horizontal .md-card-actions{
+    border-left:0;
+    border-top:1px solid #eee;
+    flex-direction:row;
+    justify-content:flex-end;
+    padding:12px 16px;
+  }
+}
+
+/* compact horizontal card */
+.md-card.horizontal.md-compact{
+  min-height:92px;
+}
+.md-card.horizontal.md-compact .md-card-media{ width:120px; min-height:92px; }
+.md-card.horizontal.md-compact .md-card-content{ padding:12px }
+
+/* Utilities: ensure consistent look with full-width cards */
+.md-card.horizontal .md-card-title{ font-size:1rem; margin-bottom:6px }
+.md-card.horizontal .md-card-subtitle{ font-size:0.9rem; margin:0; color:#616161 }
+
+/* End horizontal card styles */
